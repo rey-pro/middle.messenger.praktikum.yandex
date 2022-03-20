@@ -1,8 +1,5 @@
-import Handlebars from "handlebars";
-
-let template = Handlebars.compile(`
-<div class="main">
-    <div class="error">
+export default `
+    <main class="error">
         <div class="error__container">
             <div class="error__text-container">
                 <h6 class="error__title">{{errorCode}}</h6>
@@ -10,9 +7,5 @@ let template = Handlebars.compile(`
             </div>
             <a class="error__button" href="/">Назад к чатам</a>
         </div>
-    </div>
-</div>
+    </main>
 `
-);
-
-module.exports = template;
