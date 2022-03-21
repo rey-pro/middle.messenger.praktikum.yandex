@@ -8,36 +8,39 @@ export default `
                 <div class="chat-search-bar__search-container">
                 <input class="chat-search-bar__input" placeholder="Поиск"></div>
             </div>
-            <div class="chat-list-item" >
+            {{#each chats}}
+                <div class="chat-list-item" >
                 <div class="chat-list-item__container">
                     <div class="chat-list-item__message-container">
                         <div class="chat-list-item__image"></div>
-                        <div class="chat-list-item__message-info"><p class="chat-list-item__user-name">Andrey</p>
-                            <p class="chat-list-item__message">Hey</p></div>
+                        <div class="chat-list-item__message-info">
+                            <p class="chat-list-item__user-name">
+                            {{ this.name }}
+                            </p>
+                            <p class="chat-list-item__message">
+                            {{ this.last.message }}
+                            </p>
+                        </div>
                     </div>
-                    <div class="chat-list-item__info-container"><p class="chat-list-item__message-date">11:12</p>
-                        <div class="chat-list-item__count-container"><p class="chat-list-item__count">3</p></div>
+                    <div class="chat-list-item__info-container">
+                        <p class="chat-list-item__message-date">
+                            {{ this.last.date }}                            
+                        </p>
+                        <div class="chat-list-item__count-container">
+                            <p class="chat-list-item__count">
+                                {{ this.quantityOfUnread }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="chat-list-item" >
-                <div class="chat-list-item__container">
-                    <div class="chat-list-item__message-container">
-                        <div class="chat-list-item__image"></div>
-                        <div class="chat-list-item__message-info"><p class="chat-list-item__user-name">Alex</p>
-                            <p class="chat-list-item__message">How are you</p></div>
-                    </div>
-                    <div class="chat-list-item__info-container"><p class="chat-list-item__message-date">13:15</p>
-                        <div class="chat-list-item__count-container"><p class="chat-list-item__count">2</p></div>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
         </div>
         <div class="chat" >
             <div class="chat-active-user" >
                 <div class="chat-active-user__container">
                     <div class="chat-active-user__image"></div>
-                    <p class="chat-active-user__name">Marina</p></div>
+                    <p class="chat-active-user__name">{{ currentChat.name }}</p></div>
                 <div class="chat-active-user__edit-container"></div>
                 <button class="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="3" height="16" viewBox="0 0 3 16" fill="none">
@@ -48,28 +51,38 @@ export default `
                 </button>
             </div>
             <div class="chat-active" >
-                <div class="chat-your-message" ><p
-                        class="chat-your-message__text">How are you?</p>
-                    <div class="chat-your-message__info-container">
-                        <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg"
-                             >
-                            <line y1="-0.5" x2="3.765" y2="-0.5"
-                                  transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33313)"
-                                  stroke="#3369F3"></line>
-                            <line y1="-0.5" x2="5.6475" y2="-0.5"
-                                  transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.35828 5)"
-                                  stroke="#3369F3"></line>
-                            <line y1="-0.5" x2="5.6475" y2="-0.5"
-                                  transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01587 5)"
-                                  stroke="#3369F3"></line>
-                        </svg>
-                        <p class="chat-your-message__info">13:14</p></div>
-                </div>
-                <div class="chat-his-message" >
-                    <div class="chat-his-message__container"><p class="chat-his-message__text">Great, thanks.</p>
-                        <div class="chat-his-message__info-container"><p class="chat-his-message__info">14:15</p></div>
-                    </div>
-                </div>
+            
+                {{#each currentChat.messages}}
+                    {{#if this.isYour}}
+                        <div class="chat-your-message">
+                            <p class="chat-your-message__text">{{ this.message }}</p>
+                            <div class="chat-your-message__info-container">
+                                {{#if this.isRead}}
+                                    <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <line y1="-0.5" x2="3.765" y2="-0.5"
+                                              transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33313)"
+                                              stroke="#3369F3"></line>
+                                        <line y1="-0.5" x2="5.6475" y2="-0.5"
+                                              transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.35828 5)"
+                                              stroke="#3369F3"></line>
+                                        <line y1="-0.5" x2="5.6475" y2="-0.5"
+                                              transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01587 5)"
+                                              stroke="#3369F3"></line>
+                                    </svg>
+                                {{/if}}
+                                <p class="chat-your-message__info">{{ this.date }}</p>
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="chat-his-message" >
+                            <div class="chat-his-message__container"><p class="chat-his-message__text">{{ this.message }}</p>
+                                <div class="chat-his-message__info-container">
+                                <p class="chat-his-message__info">{{ this.date }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/each}}
             </div>
             <form class="chat-message-form" >
                 <div class="chat-message-form__container">
