@@ -14,6 +14,7 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@parcel/transformer-less": "2.3.2",
+    "dotenv": "16.0.0",
     "parcel": "2.3.2"
   },
   "dependencies": {
