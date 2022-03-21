@@ -1,4 +1,5 @@
-export default `<main class="sign-in-page">
+export default `
+<main class="sign-in-page">
     <div class="sign-in-block">
         <h1 class="sign-in-header basic-header">Регистрация</h1>
         <form class="sign-in-form" action="" id="form-root">

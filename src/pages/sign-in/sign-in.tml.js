@@ -1,5 +1,5 @@
 export default `<div class="log-in-page">
-    <div class="log-in-block">
+    <main class="log-in-block">
         <h1 class="log-in-header basic-header">Вход</h1>
         <form class="log-in-form" action="" id="form-root">
             <div class="log-in-fields">
@@ -17,5 +17,5 @@ export default `<div class="log-in-page">
             </div>
         </form>
         <a href="/sign-up.html" class="log-in-no-account-link basic-link">Нет аккаунта?</a>
-    </div>
+    </main>
 </div>`
