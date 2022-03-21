@@ -8,7 +8,7 @@ export default `
             <div class="profile-info__image" >
                 <div class="profile-info__image-edit"><p class="profile-info__image-edit-text">Поменять аватар</p></div>
             </div>
-            <h4 class="profile-info__name">Иван </h4>
+            <h4 class="profile-info__name">Alex </h4>
             <div class="profile-info__fields-container" >
                 <div class="profile-info__field" ><p
                         class="profile-info__field-name">Почта</p>
@@ -24,7 +24,7 @@ export default `
                     <p class="profile-info__field-value">Petrov</p></div>
                 <div class="profile-info__field" ><p
                         class="profile-info__field-name">Имя в чате</p>
-                    <p class="profile-info__field-value">Ivan</p></div>
+                    <p class="profile-info__field-value">Alex</p></div>
                 <div class="profile-info__field" ><p
                         class="profile-info__field-name">Телефон</p>
                     <p class="profile-info__field-value">+79999999999</p></div>
