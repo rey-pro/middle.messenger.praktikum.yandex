@@ -14,8 +14,8 @@
   height: 100%;
   margin: 0 auto;
   padding: 8px 0;
-  border-bottom: 1px solid #eaeaea;
-  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--white-five);
+  border-top: 1px solid var(--white-five);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -47,7 +47,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #efefef;
+  background: var(--white-two);
 }
 
 .chat-active-user__name {
@@ -81,7 +81,7 @@
   border-bottom-right-radius: 12px;
   border-top-right-radius: 12px;
   border-bottom-left-radius: 12px;
-  background: #f8f8f8;
+  background: var(--white-three);
   font-size: 0.8em;
   padding: 8px 16px 16px;
   box-sizing: border-box;
@@ -100,7 +100,7 @@
 .chat-his-message__info {
   font-size: 0.6em;
   margin: 0;
-  color: #999;
+  color: var(--gray-one);
   position: absolute;
 }
 
@@ -108,7 +108,7 @@
   width: calc(100% - 70%);
   display: flex;
   flex-direction: column;
-  background: #fbfbfb;
+  background: var(--white-three);
   padding: 0 8px 8px;
   overflow: auto;
 }
@@ -116,16 +116,16 @@
 .chat-list-item {
   padding: 12px 0;
   box-sizing: border-box;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--white-five);
   cursor: pointer;
 }
 
 .chat-list-item:hover {
-  background: #e4edfd;
+  background: var(--white-four);
 }
 
 .chat-list-item_active {
-  background: #e4edfd;
+  background: var(--white-four);
 }
 
 .chat-list-item__container {
@@ -137,7 +137,7 @@
   width: 47px;
   height: 47px;
   border-radius: 50%;
-  background: #eaeaea;
+  background: var(--white-three);
 }
 
 .chat-list-item__user-name {
@@ -147,13 +147,13 @@
 
 .chat-list-item__message {
   margin: 0;
-  color: #999;
+  color: var(--gray-one);
   font-size: 0.9em;
 }
 
 .chat-list-item__message-date {
   margin: 0;
-  color: #999;
+  color: var(--gray-one);
   font-size: 0.7em;
 }
 
@@ -173,7 +173,7 @@
 }
 
 .chat-list-item__count-container {
-  background: #3369f3;
+  background: var(--blue-one);
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -184,7 +184,7 @@
 
 .chat-list-item__count {
   margin: 0;
-  color: #fff;
+  color: var(--white-one);;
   font-size: 0.8em;
   padding: 4px;
 }
@@ -203,7 +203,7 @@
 
 .chat-message-form__field {
   padding: 8px 16px;
-  background: #efefef;
+  background: var(--white-two);
   border-radius: 30px;
   box-sizing: border-box;
   width: 100%;
@@ -215,15 +215,15 @@
 .chat-message-form__send-button {
   width: 28px;
   height: 28px;
-  background: #3369f3;
+  background: var(--blue-one);
   border-radius: 50%;
-  color: #fff;
+  color: var(--white-one);;
 }
 
 .chat-search-bar {
   display: flex;
   flex-direction: column;
-  background: #fbfbfb;
+  background: var(--white-three);
   position: sticky;
   top: 0;
 }
@@ -237,20 +237,20 @@
 
 .chat-search-bar__profile-button {
   text-decoration: none;
-  color: #999;
+  color: var(--gray-one);
   font-size: 0.8em;
 }
 
 .chat-search-bar__search-container {
   padding-bottom: 14px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--white-three);
   box-sizing: border-box;
 }
 
 .chat-search-bar__input {
   width: 100%;
   border-radius: 12px;
-  background: #efefef;
+  background: var(--white-two);
   outline: none;
   border: none;
   box-sizing: border-box;
@@ -273,7 +273,7 @@
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   border-bottom-left-radius: 12px;
-  background: #e4edfd;
+  background: var(--white-four);
   font-size: 0.8em;
   padding: 8px 16px 16px;
   box-sizing: border-box;
@@ -292,5 +292,5 @@
 .chat-your-message__info {
   font-size: 0.6em;
   margin: 0;
-  color: #3369f3;
+  color: var(--blue-one);
 }
