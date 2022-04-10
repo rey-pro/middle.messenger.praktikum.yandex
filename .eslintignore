@@ -1,0 +1,10 @@
+/build
+**/*.min.js
+/node_modules
+/.github
+/node_modules
+/.parcel-cache
+/.cache
+/dist
+/.gitignore
+server.js
