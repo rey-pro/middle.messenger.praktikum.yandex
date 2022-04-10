@@ -8,6 +8,9 @@
         "selector-class-pattern": ".*"
     },
     "ignoreFiles": [
-        "build/*"
+        "dist/*",
+        "parcel-cache/*",
+        "node_modules/*",
+        "cache"
     ]
 }
