@@ -57,48 +57,6 @@ export class Chat extends Block {
         };
     }
 
-    renderChatItem(chat: CurrentChatMessage) {
-        if (chat.isYour) {
-            return `
-            <div class="chat-your-message">
-                                        <p class="chat-your-message__text">${chat.message}</p>
-                                        <div class="chat-your-message__info-container">
-                                            ${this.renderIsRead(chat)}
-                                            <p class="chat-your-message__info">${chat.date}</p>
-                                        </div>
-                                    </div>
-            `
-        } else {
-            return `
-                                    <div class="chat-his-message" >
-                                        <div class="chat-his-message__container"><p class="chat-his-message__text">${chat.message}</p>
-                                            <div class="chat-his-message__info-container">
-                                                <p class="chat-his-message__info">${chat.date}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-            `
-        }
-    }
-
-    renderIsRead(chat: CurrentChatMessage) {
-        if (chat.isRead) {
-            return `
-            <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <line y1="-0.5" x2="3.765" y2="-0.5"
-                                                          transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33313)"
-                                                          stroke="#3369F3"></line>
-                                                    <line y1="-0.5" x2="5.6475" y2="-0.5"
-                                                          transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.35828 5)"
-                                                          stroke="#3369F3"></line>
-                                                    <line y1="-0.5" x2="5.6475" y2="-0.5"
-                                                          transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01587 5)"
-                                                          stroke="#3369F3"></line>
-                                                </svg>
-            `
-        }
-        return ``;
-    }
 
     render() {
         let chats = this.getChatsData();
@@ -112,10 +70,10 @@ export class Chat extends Block {
                     <div class="chat-list">
                         <div class="chat-search-bar">
                             <div class="chat-search-bar__container"><a class="chat-search-bar__profile-button"
-                                                                       href="/profile.html">Профиль
+                                                                       href="/profile.html">Profile
                                 &gt;</a></div>
                             <div class="chat-search-bar__search-container">
-                                <input class="chat-search-bar__input" placeholder="Поиск"></div>
+                                <input class="chat-search-bar__input" placeholder="Search"></div>
                         </div>
                         ${
                             chats.map(chat => `
@@ -196,12 +154,55 @@ export class Chat extends Block {
                                     </svg>
                                 </button>
                             </div>
-                            <input class="chat-message-form__field" placeholder="Сообщение" name="message" type="text">
+                            <input class="chat-message-form__field" placeholder="Message" name="message" type="text">
                             <button class="button chat-message-form__send-button">→</button>
                         </form>
                     </div>
                 </div>
             </main>
         `;
+    }
+
+    renderChatItem(chat: CurrentChatMessage) {
+        if (chat.isYour) {
+            return `
+            <div class="chat-your-message">
+                                        <p class="chat-your-message__text">${chat.message}</p>
+                                        <div class="chat-your-message__info-container">
+                                            ${this.renderIsRead(chat)}
+                                            <p class="chat-your-message__info">${chat.date}</p>
+                                        </div>
+                                    </div>
+            `
+        } else {
+            return `
+                                    <div class="chat-his-message" >
+                                        <div class="chat-his-message__container"><p class="chat-his-message__text">${chat.message}</p>
+                                            <div class="chat-his-message__info-container">
+                                                <p class="chat-his-message__info">${chat.date}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+            `
+        }
+    }
+
+    renderIsRead(chat: CurrentChatMessage) {
+        if (chat.isRead) {
+            return `
+            <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <line y1="-0.5" x2="3.765" y2="-0.5"
+                                                          transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33313)"
+                                                          stroke="#3369F3"></line>
+                                                    <line y1="-0.5" x2="5.6475" y2="-0.5"
+                                                          transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.35828 5)"
+                                                          stroke="#3369F3"></line>
+                                                    <line y1="-0.5" x2="5.6475" y2="-0.5"
+                                                          transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01587 5)"
+                                                          stroke="#3369F3"></line>
+                                                </svg>
+            `
+        }
+        return ``;
     }
 }

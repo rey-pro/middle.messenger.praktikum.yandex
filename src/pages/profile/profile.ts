@@ -12,13 +12,12 @@ export class Profile extends Block {
 
     protected getFieldsData(): Array<ProfileFields> {
         return [
-            {label: 'Почта', value: 'alex228@mail.ru'},
-            {label: 'Логин', value: 'alex228'},
-            {label: 'Имя', value: 'Alex'},
-            {label: 'Фамилия', value: 'Petrov'},
-            {label: 'Имя в чате', value: 'Alex'},
-            {label: 'Телефон', value: '+79999999999'},
-            {label: 'Почта', value: 'alex228@mail.ru'},
+            {label: 'Email', value: 'alex228@mail.ru'},
+            {label: 'Login', value: 'alex228'},
+            {label: 'First Name', value: 'Alex'},
+            {label: 'Second Name', value: 'Petrov'},
+            {label: 'Nickname for chat', value: 'Alex'},
+            {label: 'Phone', value: '+79999999999'},
         ]
     }
 
@@ -32,7 +31,7 @@ export class Profile extends Block {
                 <div class="profile-main" >
                     <div class="profile-info" >
                         <div class="profile-info__image" >
-                            <div class="profile-info__image-edit"><p class="profile-info__image-edit-text">Поменять аватар</p></div>
+                            <div class="profile-info__image-edit"><p class="profile-info__image-edit-text">Change avatar</p></div>
                         </div>
                         <h4 class="profile-info__name">Alex </h4>
                         <div class="profile-info__fields-container" >
@@ -47,16 +46,16 @@ export class Profile extends Block {
                         </div>
                         <div class="profile-info__fields-container" >
                             <div class="profile-info__field" >
-                                <button class="button profile-info__edit-button">Изменить данные
+                                <button class="button profile-info__edit-button">Edit
                                 </button>
                             </div>
                             <div class="profile-info__field" >
-                                <button class="button profile-info__edit-button">Изменить пароль
+                                <button class="button profile-info__edit-button">Change password
                                 </button>
                             </div>
                             <div class="profile-info__field" >
                                 <button class="button profile-info__logout-button" >
-                                    Выйти
+                                    Logout
                                 </button>
                             </div>
                         </div>
