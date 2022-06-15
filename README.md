@@ -8,7 +8,7 @@ https://romantic-lovelace-68904d.netlify.app/
 Макет находится в Figma - https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1
 
 ### Ссылка на pull request
-https://github.com/rey-pro/middle.messenger.praktikum.yandex/pull/2
+https://github.com/rey-pro/middle.messenger.praktikum.yandex/pull/3
 
 ### Команды
 - `npm run build` — сборка стабильной версии,
