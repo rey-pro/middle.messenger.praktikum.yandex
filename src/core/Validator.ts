@@ -1,13 +1,5 @@
-import validateOptions from '../config/validate.cfg'
-
-interface typeConfig {
-    required?: boolean;
-    min?: number;
-    max?: number;
-    latin?: boolean;
-}
-
 export class Validator {
+    [prop: string]: any;
 
     protected defaultMessages: Record<string, string> = {
         required: 'field is required',
@@ -21,61 +13,117 @@ export class Validator {
         return this.defaultMessages[ruleName] ?? '';
     }
 
-    protected getValidateOptions(field: string): typeConfig {
-        if (typeof validateOptions[field] !== "undefined") {
-            return validateOptions[field];
+    public validateField(field: string, value: string): string {
+        const functionName = '_validate' + Validator.capitalizeFirstLetter(field);
+        let error = '';
+        if(typeof this[functionName] !== 'undefined') {
+            return this[functionName](value)
         }
 
-        return {};
-    }
-
-    public check(data: Record<string, string>): [boolean, object] {
-        const errorData: Record<string, string> = {};
-        let formIsValid = true;
-        Object.keys(data).forEach((field: string) => {
-            const errorValue = this.validate(data[field], field);
-            errorData[field] = errorValue;
-            formIsValid = formIsValid && errorValue === '';
-        })
-
-        return [formIsValid, errorData];
-    }
-
-    public validate(value: string, field: string): string {
-        const rules = this.getValidateOptions(field);
-        let error = '';
-        Object.keys(rules).forEach((ruleName: string) => {
-            const ruleValue = rules[ruleName];
-            const functionName = `_${ruleName}`
-            if (error === '' && typeof this[functionName] !== 'undefined' && this[functionName](value, ruleValue)) {
-                error = this.message(ruleName, ruleValue);
-            }
-        })
-
         return error;
+    }
+
+    private static capitalizeFirstLetter(string: string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    protected _validatePassword(value: string): string {
+        let error = '';
+
+        error = this._required(value);
+        if(error) {
+            return error;
+        }
+
+        error = this._min(value, 8);
+        if(error) {
+            return error;
+        }
+
+        error = this._max(value, 40);
+        if(error) {
+            return error;
+        }
+
+        error = this._password(value);
+        if(error) {
+            return error;
+        }
+
+        return '';
+    }
+
+    protected _validateLogin(value: string): string {
+        let error = '';
+
+        error = this._required(value);
+        if(error) {
+            return error;
+        }
+
+        error = this._min(value, 3);
+        if(error) {
+            return error;
+        }
+
+        error = this._max(value, 20);
+        if(error) {
+            return error;
+        }
+
+        error = this._login(value);
+        if(error) {
+            return error;
+        }
+
+        return '';
     }
 
     message(ruleName: string, ruleValue: any) {
         return this.getDefaultMessage(ruleName).replace('%%value%%', ruleValue);
     }
 
-    _required(value: Nullable<string>, ruleValue: boolean) {
-        return value === '';
+    protected _required(value: Nullable<string>) {
+        if(value === '') {
+            return this.message('required', '');
+        }
+        return '';
     }
 
-    _min(value: string, ruleValue: number) {
-        return value.length < ruleValue;
+    protected _min(value: string, ruleValue: number) {
+        if(value.length < ruleValue) {
+            return this.message('min', ruleValue);
+        }
+        return '';
     }
 
-    _max(value: string, ruleValue: number) {
-        return value.length > ruleValue;
+    protected _max(value: string, ruleValue: number) {
+        if(value.length > ruleValue) {
+            return this.message('max', ruleValue);
+        }
+        return '';
     }
 
-    _login(value: string, pattern: string) {
-        return !(new RegExp(pattern)).test(value);
+    protected _login(value: string) {
+        //Only allowed symbols
+        if(!(new RegExp('^[a-zA-Z0-9_-]*$')).test(value)) {
+            return this.message('login', '');
+        }
+        //Disallow numbers only
+        if((new RegExp('^[0-9]+$')).test(value)) {
+            return this.message('login', '');
+        }
+
+        return '';
     }
 
-    _password(value: string, ruleValue: boolean) {
-        return /[A-Z]+[0-9]+/.test(value);
+    protected _password(value: string) {
+        if(!(new RegExp('[A-ZА-Я]')).test(value)) {
+            return this.message('password', '');
+        }
+        if(!(new RegExp('[0-9]')).test(value)) {
+            return this.message('password', '');
+        }
+        return '';
     }
 }

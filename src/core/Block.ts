@@ -17,6 +17,7 @@ export default class Block<P = any> {
     } as const;
 
     public id = nanoid(6);
+    // @ts-ignore
     private readonly _meta: BlockMeta;
 
     protected _element: Nullable<HTMLElement> = null;
@@ -26,7 +27,7 @@ export default class Block<P = any> {
     eventBus: () => EventBus<Events>;
 
     protected state: any = {};
-    protected refs: { [key: string]: HTMLElement } = {};
+    public refs: { [key: string]: Block } = {};
 
     public constructor(props?: P) {
         const eventBus = new EventBus<Events>();
@@ -113,6 +114,9 @@ export default class Block<P = any> {
         this._removeEvents();
         const newElement = fragment.firstElementChild!;
 
+        if (newElement !== null && this._element !== null){
+            this._element.replaceWith(newElement);
+        }
         this._element!.replaceWith(newElement);
 
         this._element = newElement as HTMLElement;

@@ -1,8 +1,33 @@
 import Block from '../../core/Block';
 import './sign-in.less';
 import {Validator} from "../../core/Validator";
+interface SignInProps {}
 
 export class SignIn extends Block {
+    constructor(props: SignInProps) {
+        super({
+            ...props,
+            onBlur: () => console.log('onBlur'),
+            onFocus: () => console.log('onFocus'),
+        });
+    }
+    protected validateForm() {
+        const loginData = {
+            login: (this.refs.login.refs.input.element as HTMLInputElement).value,
+            password: (this.refs.password.refs.input.element as HTMLInputElement).value
+        };
+
+        const nextState = {
+            errors: {
+                login: (new Validator).validateField('login', loginData.login),
+                password: (new Validator).validateField('password', loginData.password),
+            },
+            values: {...loginData},
+        };
+
+        this.setState(nextState);
+
+    }
     protected getStateFromProps() {
         this.state = {
             values: {
@@ -14,22 +39,9 @@ export class SignIn extends Block {
                 password: '',
             },
             onLogin: () => {
-                const loginData = {
-                    login: (this.refs.login.firstElementChild as HTMLInputElement).value,
-                    password: (this.refs.password.firstElementChild as HTMLInputElement).value
-                };
+                this.validateForm();
 
-                const [formIsValid, errorData] = (new Validator).check(loginData)
-                const nextState = {
-                    errors: {...errorData},
-                    values: {...loginData},
-                };
-
-                this.setState(nextState);
-
-                if(formIsValid) {
-                    console.log('action/login', loginData);
-                }
+                console.log('action/login', this.state.values);
             }
         }
     }
@@ -46,18 +58,26 @@ export class SignIn extends Block {
                             {{{Input
                                 value="${values.login}"
                                 error="${errors.login}"
-                                ref="login"
-                                id="login"
+
                                 type="text"
-                                placeholder="Login"
+                                name="login"
+                                ref="login"
+                                placeholder="login"
+                                
+                                onBlur=onBlur
+                                onFocus=onFocus
                             }}}
                             {{{Input
                                 value="${values.password}"
                                 error="${errors.password}"
+
+                                type="text"
+                                name="password"
                                 ref="password"
-                                id="password"
-                                type="password"
                                 placeholder="password"
+                                
+                                onBlur=onBlur
+                                onFocus=onFocus
                             }}}
                         </div>
                         {{{Button
