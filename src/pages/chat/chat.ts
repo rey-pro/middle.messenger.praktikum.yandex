@@ -1,6 +1,5 @@
 import Block from '../../core/Block';
 import './chat.less';
-import {Validator} from "../../core/Validator";
 
 export interface ChatItem {
     name: string
