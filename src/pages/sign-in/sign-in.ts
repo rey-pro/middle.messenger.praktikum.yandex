@@ -1,16 +1,9 @@
 import Block from '../../core/Block';
 import './sign-in.less';
 import {Validator} from "../../core/Validator";
-interface SignInProps {}
+export interface SignInProps {}
 
 export class SignIn extends Block {
-    constructor(props: SignInProps) {
-        super({
-            ...props,
-            onBlur: () => console.log('onBlur'),
-            onFocus: () => console.log('onFocus'),
-        });
-    }
     protected validateForm() {
         const loginData = {
             login: (this.refs.login.refs.input.element as HTMLInputElement).value,
@@ -52,7 +45,7 @@ export class SignIn extends Block {
         return `
             <div class="log-in-page">
                 <main class="log-in-block">
-                    <h1 class="log-in-header basic-header">Вход</h1>
+                    <h1 class="log-in-header basic-header">Sing in</h1>
                     <form class="log-in-form" action="" id="form-root">
                         <div class="log-in-fields">
                             {{{Input
@@ -63,9 +56,6 @@ export class SignIn extends Block {
                                 name="login"
                                 ref="login"
                                 placeholder="login"
-                                
-                                onBlur=onBlur
-                                onFocus=onFocus
                             }}}
                             {{{Input
                                 value="${values.password}"
@@ -75,18 +65,15 @@ export class SignIn extends Block {
                                 name="password"
                                 ref="password"
                                 placeholder="password"
-                                
-                                onBlur=onBlur
-                                onFocus=onFocus
                             }}}
                         </div>
                         {{{Button
                             type="button"
-                            name="Авторизоваться"
+                            name="Sign in"
                             onClick=onLogin
                         }}}
                     </form>
-                    <a href="/sign-up.html" class="log-in-no-account-link basic-link">Нет аккаунта?</a>
+                    <a href="/sign-up.html" class="log-in-no-account-link basic-link">Don't have an account?</a>
                 </main>
             </div>
         `;

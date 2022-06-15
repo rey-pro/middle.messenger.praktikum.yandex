@@ -7,6 +7,10 @@ export class Validator {
         max: 'This field must contain no more than %%value%% characters',
         login: 'Latin, can contain numbers, but not consist of them, no spaces, no special characters (hyphens and underscores are allowed)',
         password: 'At least one capital letter and number required',
+        email: 'Wrong email',
+        phone: 'Wrong phone',
+        name: 'Only Latin or Cyrillic and a hyphen',
+        firstLetterCapitalized: 'The first letter must be capitalized',
     };
 
     protected getDefaultMessage(ruleName: string) {
@@ -79,6 +83,56 @@ export class Validator {
         return '';
     }
 
+    protected _validateEmail(value: string): string {
+        let error = '';
+
+        error = this._required(value);
+        if(error) {
+            return error;
+        }
+
+        error = this._email(value);
+        if(error) {
+            return error;
+        }
+
+        return '';
+    }
+    protected _validatePhone(value: string): string {
+        let error = '';
+
+        error = this._required(value);
+        if(error) {
+            return error;
+        }
+
+        error = this._phone(value);
+        if(error) {
+            return error;
+        }
+
+        return '';
+    }
+
+    protected _validateFirst_name(value: string): string {
+        let error = '';
+
+        error = this._required(value);
+        if(error) {
+            return error;
+        }
+
+        error = this._name(value);
+        if(error) {
+            return error;
+        }
+
+        return '';
+    }
+    protected _validateSecond_name(value: string): string {
+        return this._validateFirst_name(value);
+    }
+
     message(ruleName: string, ruleValue: any) {
         return this.getDefaultMessage(ruleName).replace('%%value%%', ruleValue);
     }
@@ -124,6 +178,35 @@ export class Validator {
         if(!(new RegExp('[0-9]')).test(value)) {
             return this.message('password', '');
         }
+        return '';
+    }
+
+    protected _name(value: string) {
+        //Only allowed symbols
+        if(!(new RegExp('^[a-zA-ZА-Яа-я-]*$')).test(value)) {
+            return this.message('name', '');
+        }
+        //The first letter must be capitalized
+        if(!(new RegExp('^[A-ZА-Я]+')).test(value)) {
+            return this.message('firstLetterCapitalized', '');
+        }
+
+        return '';
+    }
+    protected _email(value: string) {
+        //Only allowed symbols
+        if(!(new RegExp('^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$')).test(value)) {
+            return this.message('email', '');
+        }
+
+        return '';
+    }
+    protected _phone(value: string) {
+        //Only allowed symbols
+        if(!(new RegExp('^[+]?[0-9]{10,15}$')).test(value)) {
+            return this.message('phone', '');
+        }
+
         return '';
     }
 }
