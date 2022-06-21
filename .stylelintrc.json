@@ -1,0 +1,16 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-prettier"
+    ],
+    "rules": {
+        "color-hex-case": "lower",
+        "selector-class-pattern": ".*"
+    },
+    "ignoreFiles": [
+        "dist/*",
+        "parcel-cache/*",
+        "node_modules/*",
+        "cache"
+    ]
+}
