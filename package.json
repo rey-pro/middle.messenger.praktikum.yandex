@@ -9,7 +9,7 @@
         "dev": "parcel src/index.html --no-cache && npm run init",
         "prebuild": "engine-version",
         "build": "parcel build src/index.html --no-cache && npm run init",
-        "start": "node server.js",
+        "start": "npm run build && node server.js",
         "test": "mocha"
     },
     "targets": {
