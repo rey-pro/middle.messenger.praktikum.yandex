@@ -1,21 +1,23 @@
 import Block from '../../core/Block';
 
 interface ButtonProps {
-  name: string;
-  type: string;
-  onClick: () => void;
+  id?: number;
+  text: string;
+  buttonClass?: string;
+  onClick?: () => void;
 }
 
 export class Button extends Block {
-  constructor({name, type, onClick}: ButtonProps) {
-    super({name, type, events: {click: onClick}});
+  public static componentName = 'Button';
+
+  constructor({id, text, buttonClass = "accent-btn", onClick}: ButtonProps) {
+    super({id, text, buttonClass, events: {click: onClick}});
   }
 
   protected render(): string {
-    // language=hbs
     return `
-      <div>
-        <button class="log-in-button basic-button" type="{{type}}">{{name}}</button>
+      <div class="button">
+        <button class="{{buttonClass}}" type="button" {{#if id}}data-id="{{id}}"{{/if}}>{{text}}</button>
       </div>
     `;
   }

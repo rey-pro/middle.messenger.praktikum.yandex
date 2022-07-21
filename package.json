@@ -1,38 +1,55 @@
 {
-  "name": "messenger",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "clean:dist": "rm -rf dist/*",
-    "dev": "npm run clean:dist && parcel static/index.html",
-    "eslint": "eslint . --fix",
-    "stylelint": "npx stylelint \"**/*.less\"",
-    "build": "npm run clean:dist && parcel build static/index.html --no-optimize",
-    "start": "npm run build && node ./server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@parcel/transformer-less": "2.3.2",
-    "@types/node": "17.0.23",
-    "@typescript-eslint/eslint-plugin": "5.18.0",
-    "@typescript-eslint/parser": "5.18.0",
-    "dotenv": "16.0.0",
-    "eslint": "8.13.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.29.4",
-    "parcel": "2.3.2",
-    "stylelint": "^14.6.1",
-    "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^25.0.0",
-    "typescript": "4.6.3"
-  },
-  "dependencies": {
-    "express": "4.17.3",
-    "handlebars": "4.7.7",
-    "nanoid": "^3.3.2"
-  }
+    "name": "messenger--praktikum",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "lint": "eslint . --fix",
+        "copy-img": "cp -vR static ./dist",
+        "init": "npm run copy-img",
+        "dev": "parcel src/index.html --no-cache && npm run init",
+        "prebuild": "engine-version",
+        "build": "parcel build src/index.html --no-cache && npm run init",
+        "start": "node server.js",
+        "test": "mocha"
+    },
+    "targets": {
+        "default": {
+            "engines": {
+                "browsers": ">= 5%"
+            }
+        }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "engines": {
+        "node": ">=16.14.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.17.10",
+        "@babel/core": "^7.17.10",
+        "@babel/preset-env": "^7.17.10",
+        "@babel/preset-typescript": "^7.16.7",
+        "@babel/register": "^7.17.7",
+        "@parcel/resolver-glob": "^2.5.0",
+        "@parcel/transformer-sass": "^2.3.2",
+        "@types/chai": "^4.3.1",
+        "@types/mocha": "^9.1.1",
+        "@typescript-eslint/eslint-plugin": "^5.18.0",
+        "@typescript-eslint/parser": "^5.18.0",
+        "chai": "^4.3.6",
+        "engine-version": "^1.0.2",
+        "eslint": "^8.12.0",
+        "global-jsdom": "8.4.0",
+        "jsdom": "19.0.0",
+        "mocha": "^10.0.0",
+        "parcel": "^2.3.2",
+        "stylelint": "^14.6.1",
+        "typescript": "^4.6.3"
+    },
+    "dependencies": {
+        "express": "^4.17.3",
+        "handlebars": "^4.7.7",
+        "nanoid": "^3.3.2"
+    }
 }
