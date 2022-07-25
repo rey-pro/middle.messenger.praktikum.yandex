@@ -8,9 +8,9 @@ type LoginRequestData = {
 const request = new HTTPTransport();
 
 export const authAPI = {
-  login: (data: LoginRequestData) =>
+  login: (data: LoginRequestData): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.post('auth/signin', {data: data, headers: { 'Content-Type': 'application/json' }}),
   
-  logout: () => 
+  logout: (): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.post('auth/logout'),
 };

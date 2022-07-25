@@ -7,22 +7,22 @@ type CreateChatData = {
 };
 
 export const chatAPI = {
-  chats: () => 
+  chats: (): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.get('chats'),
   
-  create: (data: CreateChatData) =>
+  create: (data: CreateChatData): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.post('chats', {data: data, headers: {'Content-Type': 'application/json', accept: 'application/json'}}),  
 
-  users: (id: string) =>
+  users: (id: string): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.get(`chats/${id}/users`),
   
-  addUser: (data: any) =>
+  addUser: (data: any): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.put('chats/users', {data: data, headers: {'Content-Type': 'application/json', accept: 'application/json'}}),
 
-  deleteUser: (data: any) =>
+  deleteUser: (data: any): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.delete('chats/users', {data: data, headers: {'Content-Type': 'application/json', accept: 'application/json'}}),  
 
-  token: (id: string) =>
+  token: (id: string): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.post(`chats/token/${id}`),
 
 };
