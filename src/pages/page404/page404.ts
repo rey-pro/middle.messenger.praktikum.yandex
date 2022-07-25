@@ -1,4 +1,5 @@
 import Block from '../../core/Block';
+
 export class Page404 extends Block {
   public static componentName = 'Page404';
 
