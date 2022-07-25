@@ -10,8 +10,8 @@ interface ButtonProps {
 export class Button extends Block {
   public static componentName = 'Button';
 
-  constructor({id, text, buttonClass = "accent-btn", onClick}: ButtonProps) {
-    super({id, text, buttonClass, events: {click: onClick}});
+  constructor({buttonClass = "accent-btn", onClick, ...props}: ButtonProps) {
+    super({buttonClass, events: {click: onClick}, ...props});
   }
 
   protected render(): string {
