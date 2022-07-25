@@ -1,10 +1,6 @@
 import renderPage from "./renderPage";
 import Block from "./Block";
 
-function isEqual(lhs: string, rhs: string) {
-    return lhs === rhs;
-}
-
 class Route {
     protected _pathname;
     protected _blockClass;
@@ -31,7 +27,7 @@ class Route {
     }
 
     match(pathname: string) {
-        return isEqual(pathname, this._pathname);
+        return pathname === this._pathname;
     }
 
     render() {
