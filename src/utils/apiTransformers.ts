@@ -1,16 +1,8 @@
 const findUser = (id: number): User | null  => {
   const users = window.store.getState().currentChat?.users;
-  let result = null;
+  let result = users?.filter((user) => user.id === id);
 
-  if ( users ){
-    (users as Array<User>).forEach((value) => {
-      if ( value.id === id ) {
-        result = value;
-      }
-    });
-  }
-
-  return result;
+  return (result && result[0]) ? result[0] : null;
 }
 
 
