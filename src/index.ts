@@ -7,12 +7,12 @@ import { initApp } from './services/initApp';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import ProfilePage from './pages/profile';
-import EditprofilePage from './pages/editprofile';
-import EditpasswordPage from './pages/editpassword';
-import EditavatarPage from './pages/editavatar';
+import EditProfilePage from './pages/editprofile';
+import EditPasswordPage from './pages/editpassword';
+import EditAvatarPage from './pages/editavatar';
 import ChatPage from './pages/chat';
-import CreatechatPage from './pages/createchat';
-import EditchatPage from './pages/editchat';
+import CreateChatPage from './pages/createchat';
+import EditChatPage from './pages/editchat';
 import NotFound from './pages/page404';
 import Page500 from './pages/page500';
 
@@ -41,12 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
   .use('/login', LoginPage, {})
   .use('/profile', ProfilePage, {})
   .use('/register', RegisterPage, {})
-  .use('/profile/edit', EditprofilePage, {})
-  .use('/profile/editpassword', EditpasswordPage, {})
-  .use('/profile/editavatar', EditavatarPage, {})
+  .use('/profile/edit', EditProfilePage, {})
+  .use('/profile/editpassword', EditPasswordPage, {})
+  .use('/profile/editavatar', EditAvatarPage, {})
   .use('/chat', ChatPage, {})
-  .use('/chat/add', CreatechatPage, {})
-  .use('/chat/edit', EditchatPage, {})
+  .use('/chat/add', CreateChatPage, {})
+  .use('/chat/edit', EditChatPage, {})
   .use('/error', Page500, {})
   .use('*', NotFound, {})
   .start();

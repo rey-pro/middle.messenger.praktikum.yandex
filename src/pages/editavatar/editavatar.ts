@@ -5,7 +5,7 @@ import { changeAvatar } from '../../services/user';
 
 import '../../styles/profile.scss';
 
-export class EditavatarPage extends Form {
+export class EditAvatarPage extends Form {
   public forAuthorized = true;
 
   validator = {
@@ -58,4 +58,4 @@ export class EditavatarPage extends Form {
   }
 }
 
-export default withStore(EditavatarPage);
+export default withStore(EditAvatarPage);

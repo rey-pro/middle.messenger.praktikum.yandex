@@ -5,7 +5,7 @@ import { create } from '../../services/chat';
 
 import '../../styles/profile.scss';
 
-export class CreatechatPage extends Form {
+export class CreateChatPage extends Form {
   public forAuthorized = true;
 
   validator = {
@@ -55,4 +55,4 @@ export class CreatechatPage extends Form {
   }
 }
 
-export default withStore(CreatechatPage);
+export default withStore(CreateChatPage);

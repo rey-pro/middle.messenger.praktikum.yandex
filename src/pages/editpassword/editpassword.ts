@@ -5,7 +5,7 @@ import { changePassword } from '../../services/user';
 
 import '../../styles/profile.scss';
 
-export class EditpasswordPage extends Form {
+export class EditPasswordPage extends Form {
   public forAuthorized = true;
 
   validator = {
@@ -67,4 +67,4 @@ export class EditpasswordPage extends Form {
   }
 }
 
-export default withStore(EditpasswordPage);
+export default withStore(EditPasswordPage);

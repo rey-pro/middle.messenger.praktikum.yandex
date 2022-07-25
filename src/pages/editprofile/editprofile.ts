@@ -5,7 +5,7 @@ import { edit } from '../../services/user';
 
 import '../../styles/profile.scss';
 
-export class EditprofilePage extends Form {
+export class EditProfilePage extends Form {
   public forAuthorized = true;
 
   validator = {
@@ -121,4 +121,4 @@ export class EditprofilePage extends Form {
   }
 }
 
-export default withStore(EditprofilePage);
+export default withStore(EditProfilePage);
