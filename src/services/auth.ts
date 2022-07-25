@@ -14,7 +14,14 @@ export const login = async (
 ) => {
   dispatch({ isLoading: false, formError: null });
 
-  const response = await authAPI.login(action);
+  let response;
+  try {
+    response = await authAPI.login(action);
+  }
+  catch (e) {
+    console.error(e);
+    return;
+  }
 
   if (apiHasError(response)) {
     dispatch({ isLoading: true, formError: response.reason, formSuccess: null });
