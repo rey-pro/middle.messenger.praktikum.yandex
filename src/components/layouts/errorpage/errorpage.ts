@@ -25,7 +25,7 @@ export class ErrorPage extends Block {
               to="/chat"
             }}}
             </p>
-        <div class="centered-block">
+        </div>
     </div>
     `;
   }
