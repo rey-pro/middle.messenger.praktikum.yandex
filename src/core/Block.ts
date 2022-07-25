@@ -153,20 +153,18 @@ export default class Block {
   }
 
   _makePropsProxy(props: P) {
-    const self = this;
-
     return new Proxy(props, {
-      get(target: P, prop: string) {
+      get: (target: P, prop: string) => {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: P, prop: string, value: unknown) {
+      set: (target: P, prop: string, value: unknown) => {
         target[prop] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
         return true;
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error('Нет доступа');
       },
     }) as unknown as P;
