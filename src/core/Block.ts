@@ -17,7 +17,7 @@ export default class Block {
   } as const;
 
   public id = nanoid(6);
-  public rName = '';
+  public refName = '';
   private readonly _meta: BlockMeta;
 
   protected _element: Nullable<HTMLElement> = null;
@@ -232,7 +232,7 @@ export default class Block {
     const newContent = child.getContent();
 
     if (newContent !== null) {
-      this.refs[child.rName] = newContent;
+      this.refs[child.refName] = newContent;
     }  
   }
 

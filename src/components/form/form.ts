@@ -17,8 +17,8 @@ export class Form extends Block {
     const component = this.children[element.id];
     let error = '';
     
-    if (Object.keys(this.validator).includes(component.rName)) {
-      error = this.validator[component.rName].validate(value);
+    if (Object.keys(this.validator).includes(component.refName)) {
+      error = this.validator[component.refName].validate(value);
     }  
 
     component.updateComponentChild({text: error});

@@ -20,7 +20,7 @@ export default function registerComponent<Props = any>(Component: BlockConstruct
 
     const component = new Component(hash);
 
-    component.rName = ref;
+    component.refName = ref;
     children[component.id] = component;
 
     if (ref) {
