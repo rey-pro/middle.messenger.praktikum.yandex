@@ -59,7 +59,7 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
+  private _createResources() {
     this._element = this._createDocumentElement('div');
   }
 
