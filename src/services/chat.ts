@@ -19,7 +19,7 @@ type MessagePayload = {
   message: string;
 }
 
-export const chats = async (
+export const getChats = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
   action: CreatePayload,

@@ -1,7 +1,7 @@
 import Form from '../../components/form';
 import Validator from '../../core/validator';
 import { withStore } from '../../utils';
-import { chats, chat, sendMessage, stopMessage } from '../../services/chat';
+import { getChats, chat, sendMessage, stopMessage } from '../../services/chat';
 
 import '../../styles/profile.scss';
 import '../../styles/chat.scss';
@@ -15,7 +15,7 @@ export class ChatPage extends Form {
 
   constructor(props: P) {
     super(props);
-    window.store.dispatch(chats);
+    window.store.dispatch(getChats);
   }
   
   submitHandler = function(formObject: any){
