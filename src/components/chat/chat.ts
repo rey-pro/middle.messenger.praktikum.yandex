@@ -31,7 +31,7 @@ export class Chat extends Block {
     return `
     <div class="chat-block {{#if active}}active{{/if}}" id = "${this.id}" data-id = {{id}}>
         <div class="chat-block__image">
-            {{#if image}}<img src="{{image}}">{{/if}}
+            {{#if image}}<img src="{{image}}" alt="">{{/if}}
         </div>
         <div class="chat-block__message">
             <p class="chat-block__message-title">{{name}}</p>
