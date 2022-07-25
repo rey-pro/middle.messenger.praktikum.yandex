@@ -29,17 +29,17 @@ export const userAPI = {
     request.get('auth/user'),
   
   create: (data: UserRequestData) => 
-    request.post('auth/signup'),
+    request.post('auth/signup', {data: data}),
 
   edit: (data: UserRequestData) => 
-    request.put('user/profile'),
+    request.put('user/profile', {data: data}),
 
   editPassword: (data: PasswordRequestData) => 
-    request.put('user/password'),
+    request.put('user/password', {data: data}),
 
   editAvatar: (data: AvatarRequestData) => 
-    request.put('user/profile/avatar', {data: data}),
+    request.put('user/profile/avatar', {data: data, headers: {'Content-Type': 'multipart/form-data'}}),
 
   findUser: (data: SearchByLoginData) => 
-    request.post('user/search')
+    request.post('user/search', {data: data})
 };
