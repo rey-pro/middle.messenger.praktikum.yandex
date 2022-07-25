@@ -26,20 +26,20 @@ type SearchByLoginData = {
 
 export const userAPI = {
   me: () => 
-    request.get('auth/user', {headers: {'Content-Type': 'application/json', accept: 'application/json'}}),
+    request.get('auth/user'),
   
   create: (data: UserRequestData) => 
-    request.post('auth/signup', {data: data, headers: { 'Content-Type': 'application/json' }}),
+    request.post('auth/signup'),
 
   edit: (data: UserRequestData) => 
-    request.put('user/profile', {data: data, headers: { 'Content-Type': 'application/json' }}),
+    request.put('user/profile'),
 
   editPassword: (data: PasswordRequestData) => 
-    request.put('user/password', {data: data, headers: { 'Content-Type': 'application/json' }}),
+    request.put('user/password'),
 
   editAvatar: (data: AvatarRequestData) => 
     request.put('user/profile/avatar', {data: data}),
 
   findUser: (data: SearchByLoginData) => 
-    request.post('user/search', {data: data, headers: { 'Content-Type': 'application/json' }})    
+    request.post('user/search')
 };

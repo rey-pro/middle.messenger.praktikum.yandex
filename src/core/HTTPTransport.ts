@@ -32,7 +32,7 @@ export default class HTTPTransport {
 
 
     request = (url: string, options: OptionsProp = {method: METHODS.GET, includeCredentials: true}, timeout = 5000) => {
-      const {method, headers = {}, data, includeCredentials} = options;
+      const {method, headers = {'Content-Type': 'application/json', accept: 'application/json'}, data, includeCredentials} = options;
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 
