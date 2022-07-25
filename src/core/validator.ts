@@ -78,11 +78,6 @@ export default class Validator{
         return /^.*[A-Z]+.*$/.test(value);
     }
 
-    _check(fn:(param: string) => boolean, param?: any){
-        console.log(fn);
-        return fn(param);
-    }
-
     validate(element: string){
         let message = '';
 
