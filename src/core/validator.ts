@@ -1,17 +1,17 @@
-type typeMessage = {
+type TypeMessage = {
     [key: string]: string
 }
 
 interface ValidatorOptions {
     rules: {[key: string]: boolean | number };
-    messages?: typeMessage;
+    messages?: TypeMessage;
 }
 
 export default class Validator{
     [prop: string]: any;
     private options: ValidatorOptions;
     
-    messages: typeMessage = {
+    messages: TypeMessage = {
        'required': 'Пожалуйста, заполните поле',
        'min': 'Это поле должно содержать не менее %rule% символов',
        'max': 'Это поле должно содержать не более %rule% символов',
