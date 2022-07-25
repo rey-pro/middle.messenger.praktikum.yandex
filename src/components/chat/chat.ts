@@ -34,7 +34,7 @@ export class Chat extends Block {
             {{#if image}}<img src="{{image}}" alt="">{{/if}}
         </div>
         <div class="chat-block__message">
-            <p class="chat-block__message-title">{{name}}</p>
+            <time class="chat-block__message-title">{{name}}</time>
             <p>
                 {{#if lastMessage.author}}
                 <span class="chat-block__message-author">
