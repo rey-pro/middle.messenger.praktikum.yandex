@@ -1,6 +1,4 @@
-type TypeMessage = {
-    [key: string]: string
-}
+type TypeMessage = Record<string, string>
 
 interface ValidatorOptions {
     rules: {[key: string]: boolean | number };
