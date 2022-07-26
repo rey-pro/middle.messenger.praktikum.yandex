@@ -30,7 +30,7 @@ export const login = async (
 
   let responseUser;
   try {
-    responseUser = await authAPI.login(action);
+    responseUser = await userAPI.me();
   }
   catch (e) {
     dispatch(logout);
