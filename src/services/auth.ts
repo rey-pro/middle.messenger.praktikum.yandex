@@ -19,7 +19,7 @@ export const login = async (
     response = await authAPI.login(action);
   }
   catch (e) {
-    console.error(e);
+    dispatch({ isLoading: true, formError: e.message, formSuccess: null });
     return;
   }
 
@@ -28,7 +28,14 @@ export const login = async (
     return;
   }
 
-  const responseUser = await userAPI.me();
+  let responseUser;
+  try {
+    responseUser = await authAPI.login(action);
+  }
+  catch (e) {
+    dispatch(logout);
+    return;
+  }
 
   if (apiHasError(responseUser)) {
     dispatch(logout);
@@ -43,7 +50,13 @@ export const login = async (
 export const logout = async (dispatch: Dispatch<AppState>) => {
   dispatch({ isLoading: false });
 
-  await authAPI.logout();
+  try {
+    await authAPI.logout();
+  }
+  catch (e) {
+    console.error(e);
+    return;
+  }
 
   dispatch({ isLoading: true, user: null, formError: null, chats: null, currentChat: null, messages: [] });
 

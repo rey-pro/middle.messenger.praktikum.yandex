@@ -24,7 +24,12 @@ export const getChats = async (
   state: AppState,
   action: CreatePayload,
 ) => {
-  const response = await chatAPI.chats();
+  let response;
+  try {
+    response = await chatAPI.chats();
+  } catch (e) {
+    console.error(e);
+  }
 
   const result: Array<Chat> = []; 
 
@@ -43,15 +48,24 @@ export const create = async (
     state: AppState,
     action: CreatePayload,
   ) => {
- 
-    let response = await chatAPI.create(action);
-    
+    let response;
+    try {
+      response = await chatAPI.create(action);
+    } catch (e) {
+      dispatch({ isLoading: true, formError: e.message, formSuccess: null });
+      return;
+    }
+
     if (apiHasError(response)) {
       dispatch({ isLoading: true, formError: response.reason });
       return;
     }
-  
-    response = await chatAPI.chats();
+
+    try {
+      response = await chatAPI.chats();
+    } catch (e) {
+      console.error(e);
+    }
 
     const result: Array<Chat> = []; 
   
@@ -91,9 +105,14 @@ export const create = async (
 
     if ( !currentChat ){
       return;
-    }  
+    }
 
-    let response = await chatAPI.users(id);
+    let response;
+    try {
+      response = await chatAPI.users(id);
+    } catch (e) {
+      console.error(e);
+    }
     const users: Array<User> = [];
     
     if (!apiHasError(response)) {
@@ -105,7 +124,11 @@ export const create = async (
     (currentChat as Chat).users = users;
     
 
-    response = await chatAPI.token(id);
+    try {
+      response = await chatAPI.token(id);
+    } catch (e) {
+      console.error(e);
+    }
     if (apiHasError(response)) {
       window.router.go('/error');
       return;
@@ -122,7 +145,13 @@ export const create = async (
     action: AddUserPayload,
   ) => {
 
-    let response = await userAPI.findUser(action);
+    let response;
+    try {
+      response = await userAPI.findUser(action);
+    } catch (e) {
+      dispatch({ isLoading: true, formError: e.message });
+      return;
+    }
     const currentChat = window.store.getState().currentChat;
 
     if ( !currentChat ) {
@@ -154,7 +183,12 @@ export const create = async (
       chatId: currentChat?.id
     }; 
 
-    response = await chatAPI.addUser(JSON.stringify(addData));
+    try {
+      response = await chatAPI.addUser(JSON.stringify(addData));
+    } catch (e) {
+      dispatch({ isLoading: true, formError: e.message });
+      return;
+    }
 
     if (apiHasError(response)) {
       dispatch({ isLoading: true, formError: response.reason });
@@ -180,9 +214,15 @@ export const create = async (
     const delData = {
       users: [+Number(id)],
       chatId: currentChat.id
-    }; 
+    };
 
-    const response = await chatAPI.deleteUser(JSON.stringify(delData));
+    let response;
+    try {
+      response = await chatAPI.deleteUser(JSON.stringify(delData));
+    } catch (e) {
+      dispatch({ isLoading: true, formError: e.message });
+      return;
+    }
 
     if (apiHasError(response)) {
       dispatch({ isLoading: true, formError: response.reason });

@@ -28,15 +28,26 @@ export const create = async (
 ) => {
   dispatch({ isLoading: false });
 
-  const response = await userAPI.create(action);
+  let response;
+  try {
+    response = await userAPI.create(action);
+  } catch (e) {
+    dispatch({ isLoading: true, formError: e.message, formSuccess: null });
+    return;
+  }
 
   console.log(response);
   if (apiHasError(response)) {
     dispatch({ isLoading: true, formError: response.reason, formSuccess: null });
     return;
   }
-
-  const responseUser = await userAPI.me();
+  let responseUser
+  try {
+    responseUser = await userAPI.me();
+  }
+  catch (e) {
+    console.error(e);
+  }
 
   if (apiHasError(responseUser)) {
     window.router.go('/login');
@@ -55,7 +66,13 @@ export const edit = async (
 ) => {
   dispatch({ isLoading: false });
 
-  const response = await userAPI.edit(action);
+  let response;
+  try {
+    response = await userAPI.edit(action);
+  } catch (e) {
+    dispatch({ isLoading: true, formError: e.message, formSuccess: null });
+    return;
+  }
 
   console.log(response);
   if (apiHasError(response)) {
@@ -74,8 +91,13 @@ export const changePassword = async (
   action: PasswordPayload,
 ) => {
   dispatch({ isLoading: false });
-
-  const response = await userAPI.editPassword(action);
+  let response;
+  try {
+    response = await userAPI.editPassword(action);
+  } catch (e) {
+    dispatch({ isLoading: true, formError: e.message, formSuccess: null });
+    return;
+  }
   console.log(response);
   
   if (apiHasError(response)) {
@@ -94,8 +116,13 @@ export const changeAvatar = async (
   action: AvatarPayload,
 ) => {
   dispatch({ isLoading: false });
-
-  const response = await userAPI.editAvatar(action);
+  let response;
+  try {
+    response = await userAPI.editAvatar(action);
+  } catch (e) {
+    dispatch({ isLoading: true, formError: e.message, formSuccess: null });
+    return;
+  }
   console.log(response);
   
   if (apiHasError(response)) {

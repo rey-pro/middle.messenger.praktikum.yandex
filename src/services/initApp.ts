@@ -1,10 +1,17 @@
-import { userAPI } from '../api';
+import {chatAPI, userAPI} from '../api';
 import type { Dispatch } from '../core';
 import { transformUser, apiHasError } from '../utils';
 
 export async function initApp(dispatch: Dispatch<AppState>) {
   try {
-    const response = await userAPI.me();
+    let response;
+    try {
+      response = await userAPI.me();
+    } catch (e) {
+      console.error(e);
+      dispatch({ user: null, isLoading: true });
+      return;
+    }
 
     if (apiHasError(response)) {
       dispatch({ user: null, isLoading: true });
