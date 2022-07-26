@@ -1,4 +1,4 @@
-import Block from '../../core/Block';
+import Page from '../../core/Page';
 import Validator from '../../core/validator';
 import '../../styles/form.scss';
 
@@ -6,7 +6,7 @@ type validatorType = {
   [key: string]: Validator
 }
 
-export class Form extends Block {
+export class Form extends Page {
   public static componentName = 'Form';
 
   validator: validatorType = {};

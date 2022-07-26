@@ -1,6 +1,6 @@
-import Block from '../../core/Block';
+import Page from '../../core/Page';
 
-export class Page404 extends Block {
+export class Page404 extends Page {
   public static componentName = 'Page404';
 
   render() {

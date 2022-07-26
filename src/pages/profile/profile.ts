@@ -1,9 +1,9 @@
-import Block from '../../core/Block';
+import Page from '../../core/Block';
 import { withStore } from '../../utils';
 import { logout } from '../../services/auth';
 import '../../styles/profile.scss';
 
-export class ProfilePage extends Block {
+export class ProfilePage extends Page {
     public forAuthorized = true;
 
     constructor(props: P) {
