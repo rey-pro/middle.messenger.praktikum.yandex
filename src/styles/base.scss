@@ -1,0 +1,60 @@
+@use 'settings' as s;
+
+@import url('reset.scss');
+
+body {
+    font: s.$base-font-size s.$base-font;
+    color: s.$base-color;
+}
+a {
+    color: s.$base-color;
+}
+.back-link {
+    font-size: 0.8rem;
+    margin-top: 4rem;
+}
+.centered-block__wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    overflow: auto;  
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: stretch;
+    .centered-block__content {
+        margin: auto;
+        text-align: center;
+    }
+}
+%btn {
+    padding: 0.6rem 5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.6rem;
+    cursor: pointer;
+}
+.accent-btn {
+    @extend %btn;
+    background-color: s.$stress-color;
+    border-color: s.$stress-color;
+}
+.link-btn {
+    border: none; 
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+.error{
+    color: s.$error-color;
+}
+.text-center{
+    text-align: center;
+}
+.note{
+    color: #999999;
+    font-size: 0.8rem;
+}

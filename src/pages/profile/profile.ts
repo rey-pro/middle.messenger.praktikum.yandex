@@ -1,67 +1,94 @@
-import Block from '../../core/Block';
-import './profile.less';
-export interface SignInProps {}
-interface ProfileFields {
-    label: string
-    value: string
-}
+import Page from '../../core/Block';
+import { withStore } from '../../utils';
+import { logout } from '../../services/auth';
+import '../../styles/profile.scss';
 
-export class Profile extends Block {
-    protected getStateFromProps() {
-    }
+export class ProfilePage extends Page {
+    public forAuthorized = true;
 
-    protected getFieldsData(): Array<ProfileFields> {
-        return [
-            {label: 'Email', value: 'alex228@mail.ru'},
-            {label: 'Login', value: 'alex228'},
-            {label: 'First Name', value: 'Alex'},
-            {label: 'Second Name', value: 'Petrov'},
-            {label: 'Nickname for chat', value: 'Alex'},
-            {label: 'Phone', value: '+79999999999'},
-        ]
-    }
-
-    render() {
-        // language=hbs
-        return `
-            <main class="main">
-                <div class="profile-navigation" ><a href="/chat.html">
-                    <button class="button profile-navigation__button">←</button>
-                </a></div>
-                <div class="profile-main" >
-                    <div class="profile-info" >
-                        <div class="profile-info__image" >
-                            <div class="profile-info__image-edit"><p class="profile-info__image-edit-text">Change avatar</p></div>
-                        </div>
-                        <h4 class="profile-info__name">Alex </h4>
-                        <div class="profile-info__fields-container" >
-                            ${
-                                this.getFieldsData().map(item => `
-                                <div class="profile-info__field">
-                                    <p class="profile-info__field-name">${item.label}</p>
-                                    <p class="profile-info__field-value">${item.value}</p>
-                                </div>
-                            `).join('')
-                            }
-                        </div>
-                        <div class="profile-info__fields-container" >
-                            <div class="profile-info__field" >
-                                <button class="button profile-info__edit-button">Edit
-                                </button>
-                            </div>
-                            <div class="profile-info__field" >
-                                <button class="button profile-info__edit-button">Change password
-                                </button>
-                            </div>
-                            <div class="profile-info__field" >
-                                <button class="button profile-info__logout-button" >
-                                    Logout
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+    constructor(props: P) {
+    super({
+        ...props,
+        links: [
+            {
+                href: "/profile/edit",
+                text: "Изменить данные"     
+            },
+            {    
+                href: "/profile/editpassword",
+                text: "Изменить пароль"     
+            }    
+        ],
+        onLogout: () => window.store.dispatch(logout)
+     });
+  }
+    
+  render() {
+    return `
+    <div class="centered-block__wrapper">
+        {{#if store.isLoading}}
+        <div class="back-column centered">
+            {{{Link
+                to="/chat"
+                class="back-btn"
+            }}}
+        </div>
+        <div class="centered full-block">
+            <div class="full-block__wrapper">
+                <div class="avatar-block">
+                    <img class="avatar-img" src="{{store.user.avatar}}">
+                    {{{Link
+                        to="/profile/editavatar"
+                        class="avatar-block__link"
+                        text="Поменять аватар"
+                    }}}
                 </div>
-            </main>
-        `;
-    }
+                <h2>{{store.user.firstName}}</h2>
+                <div class="user-info">
+                    <div class="user-info__block">
+                        <dt class="user-info__label">Почта</dt>
+                        <dd class="user-info__data">{{store.user.email}}</dd>
+                    </div>    
+                    <div class="user-info__block">
+                        <dt class="user-info__label">Логин</dt>
+                        <dd class="user-info__data">{{store.user.login}}</dd>
+                    </div>    
+                    <div class="user-info__block">
+                        <dt class="user-info__label">Имя</dt>
+                        <dd class="user-info__data">{{store.user.firstName}}</dd>
+                    </div>    
+                    <div class="user-info__block">
+                        <dt class="user-info__label">Фамилия</dt>
+                        <dd class="user-info__data">{{store.user.lastName}}</dd>
+                    </div>    
+                    <div class="user-info__block">
+                        <dt class="user-info__label">Имя в чате</dt>
+                        <dd class="user-info__data">{{store.user.displayName}}</dd>
+                    </div>    
+                    <div class="user-info__block">
+                        <dt class="user-info__label">Телефон</dt>
+                        <dd class="user-info__data">{{store.user.phone}}</dd>
+                    </div>    
+                </div>
+                {{#each links}}  
+                {{{Link
+                    text=this.text
+                    to=href
+                }}}
+                {{/each}}
+                {{{Button 
+                    text="Выйти"
+                    buttonClass="link-btn"
+                    onClick=onLogout
+                }}}
+            </div>    
+        </div>
+        {{else}}
+        <div>loading...</div>
+        {{/if}}
+    </div>
+    `;
+  }
 }
+
+export default withStore(ProfilePage);
