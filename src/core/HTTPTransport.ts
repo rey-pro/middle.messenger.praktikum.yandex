@@ -12,7 +12,7 @@ type OptionsProp = {
     headers?: {[key: string]: string},
     method?: string,
     timeout?: number,
-    data?: any,
+    data?: Record<string, unknown>,
     includeCredentials?: boolean
 }
 export default class HTTPTransport {

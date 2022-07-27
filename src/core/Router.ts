@@ -1,4 +1,5 @@
 import Route from "./Route";
+import Block from "./Block";
 
 export class Router {
     private static __instance: Router;
@@ -18,7 +19,7 @@ export class Router {
         Router.__instance = this;
     }
 
-    use(pathname: string, block: any, props: P) {
+    use(pathname: string, block: Block, props: P) {
         const route = new Route(pathname, block, props);
 
         this.routes.push(route);

@@ -18,11 +18,11 @@ export class ChatPage extends Form {
     window.store.dispatch(getChats);
   }
   
-  submitHandler = function(formObject: any){
+  submitHandler = function(formObject: object){
     sendMessage(formObject);
   }; 
 
-  protected getStateFromProps(props?: any) {
+  protected getStateFromProps(props?: Record<string, unknown> | undefined) {
     super.getStateFromProps(props);
     
     const extState = {

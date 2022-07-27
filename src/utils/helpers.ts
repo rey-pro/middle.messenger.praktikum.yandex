@@ -68,7 +68,7 @@ export function toObject(response: string): ResponseData{
   return result;
 }
 
-export function queryStringify(data: {[key: string]: any}) {
+export function queryStringify(data: Record<string, unknown>) {
   let result = '';
   if (typeof data == 'object') {
     result = Object.keys(data).map(key => key + '=' + data[key]).join('&');

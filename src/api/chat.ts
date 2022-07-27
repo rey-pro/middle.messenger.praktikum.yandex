@@ -16,10 +16,10 @@ export const chatAPI = {
   users: (id: string): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.get(`chats/${id}/users`),
   
-  addUser: (data: any): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
+  addUser: (data: Record<string, unknown>): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.put('chats/users', {data: data}),
 
-  deleteUser: (data: any): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
+  deleteUser: (data: Record<string, unknown>): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>
     request.delete('chats/users', {data: data}),
 
   token: (id: string): Promise<Record<string, unknown>|ChatDTO[]|APIError> =>

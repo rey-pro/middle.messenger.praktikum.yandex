@@ -10,7 +10,7 @@ export class Form extends Page {
   public static componentName = 'Form';
 
   validator: validatorType = {};
-  submitHandler?: (formObject: any) => void;
+  submitHandler?: (formObject: object) => void;
 
   validateChild(element: HTMLInputElement): boolean {
     const value = element.value;
